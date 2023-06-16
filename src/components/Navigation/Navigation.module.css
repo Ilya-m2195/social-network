@@ -1,0 +1,15 @@
+.nav {
+  padding: 20px;
+  grid-area: header__nav;
+  background: rebeccapurple;
+}
+
+.item {
+  margin-bottom: 20px;
+  color: aqua;
+}
+
+.item .active {
+  color: gold;
+  font-size: 22px;
+}
