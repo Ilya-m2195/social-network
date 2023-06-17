@@ -1,0 +1,10 @@
+.dialogs_user {
+  margin-bottom: 20px;
+  color: blueviolet;
+  font-size: 20px;
+}
+
+.active {
+color: rgb(43, 226, 180);
+font-size: 22px;
+}
