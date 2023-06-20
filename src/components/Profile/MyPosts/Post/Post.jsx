@@ -1,17 +1,15 @@
 import Style from './Post.module.css'
-const Post = (props) => {
+const Post = props => {
     return (
         <div className={Style.post}>
-            {props.massage}
+            {props.message}
             <div>
                 <span>{`likes - ${props.likes}`}</span>
             </div>
         </div>
-
-
     )
 }
 
-Post.defaultProps = {massage: 'some massage', likes: 'infinity' }
+Post.defaultProps = {message: 'empty massage', likes: 'infinity' }
 
 export default Post;

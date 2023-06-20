@@ -1,9 +1,13 @@
-/* .container {
-
-} */
 
 .dialogs_box {
   display: grid;
   grid-template-columns: 2fr 10fr;
+  padding-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background: #a84343;
+  border: 1px solid red;
 }
 
