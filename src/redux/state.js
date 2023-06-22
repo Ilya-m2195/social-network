@@ -1,4 +1,10 @@
-import { rerenderTree } from "../render";
+let rerenderTree = () => {
+
+}
+
+export const observer = (func) => {
+rerenderTree = func;
+}
 
 let state = {
 
@@ -13,7 +19,9 @@ let state = {
         message: 'This is my second post!',
         likes: 14,
       },
-    ]
+    ],
+
+    newTextPost: ''
 
   },
 
@@ -77,13 +85,20 @@ let state = {
   ]
 }
 
-export let addPost = str => {
+export let addPost = () => {
   let newPost = {
-    message: str,
+    message: state.profilePage.newTextPost,
     likes: 12,
   }
   state.profilePage.postArrayData.push(newPost);
   rerenderTree(state);
+  changeTextPost('');
+}
+
+export let changeTextPost = (text) => {
+  state.profilePage.newTextPost = text;
+  rerenderTree(state);
+  debugger
 }
 
 export default state;

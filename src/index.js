@@ -1,7 +1,25 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import './index.css';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { rerenderTree } from './render';
 import state from './redux/state';
+import { addPost, changeTextPost, observer } from './redux/state';
+
+let root = ReactDOM.createRoot(document.getElementById('root'))
+ const rerenderTree = (state) => {
+  root.render(
+    <React.StrictMode>
+      <App
+        state={state}
+        addPost={addPost}
+        changeTextPost={changeTextPost}
+      />
+    </React.StrictMode>
+  );
+}
+
+observer(rerenderTree);
 
 rerenderTree(state);
 
