@@ -8,9 +8,9 @@ const MyPosts = props => {
 
   return (
     <div className={Style.container}>My posts
-      <NewPost addPost={props.addPost}
+      <NewPost dispatch={props.dispatch}
         newTextPost={props.newTextPost}
-        changeTextPost={props.changeTextPost} />
+      />
       {postsElements};
     </div>
   )

@@ -1,107 +1,110 @@
-let rerenderTree = () => {
+import friendsReducer from "./friends-reducer";
+import messagesReducer from "./messages-reducer";
+import profileReducer from "./profile-reducer";
 
-}
+let store = {
 
-export const observer = (func) => {
-rerenderTree = func;
-}
+  _state: {
 
-let state = {
+    profilePage: {
 
-  profilePage: {
+      postArrayData: [
+        {
+          message: 'hi',
+          likes: 13,
+        },
+        {
+          message: 'This is my second post!',
+          likes: 14,
+        },
+      ],
 
-    postArrayData: [
+      newTextPost: ''
+
+    },
+
+    messagePage: {
+
+      userArrayData: [
+        {
+          id: 1,
+          name: 'Ivan',
+        },
+        {
+          id: 2,
+          name: 'Lina',
+        },
+        {
+          id: 3,
+          name: 'Peter',
+        },
+        {
+          id: 4,
+          name: 'Boba',
+        },
+      ],
+
+      dialogArrayData: [
+        {
+          message: 'Hello!!!',
+          id: 0,
+        },
+        {
+          message: 'How are you?',
+          id: 1,
+        },
+        {
+          message: 'There are you?',
+          id: 2,
+        },
+        {
+          message: 'Go to the gym?',
+          id: 3,
+        },
+      ],
+      newTextMessage: ''
+    },
+
+    friends: [
       {
-        message: 'hi',
-        likes: 13,
+        name: 'Vlad',
+        avatarLink: 'https://amiel.club/uploads/posts/2022-03/1647576511_1-amiel-club-p-bebi-yoda-kartinki-1.jpg'
       },
-      {
-        message: 'This is my second post!',
-        likes: 14,
-      },
-    ],
 
-    newTextPost: ''
+      {
+        name: 'Dima',
+        avatarLink: 'https://amiel.club/uploads/posts/2022-03/1647576511_1-amiel-club-p-bebi-yoda-kartinki-1.jpg'
+      },
 
-  },
-
-  messagePage: {
-
-    userArrayData: [
       {
-        id: 1,
-        name: 'Ivan',
-      },
-      {
-        id: 2,
-        name: 'Lina',
-      },
-      {
-        id: 3,
-        name: 'Peter',
-      },
-      {
-        id: 4,
-        name: 'Boba',
-      },
-    ],
-
-    dialogArrayData: [
-      {
-        massage: 'Hello!!!',
-        id: 0,
-      },
-      {
-        massage: 'How are you?',
-        id: 1,
-      },
-      {
-        massage: 'There are you?',
-        id: 2,
-      },
-      {
-        massage: 'Go to the gym?',
-        id: 3,
+        name: 'Ilya',
+        avatarLink: 'https://amiel.club/uploads/posts/2022-03/1647576511_1-amiel-club-p-bebi-yoda-kartinki-1.jpg'
       },
     ]
-
   },
 
-  friends: [
-    {
-      name: 'Vlad',
-      avatarLink: 'https://amiel.club/uploads/posts/2022-03/1647576511_1-amiel-club-p-bebi-yoda-kartinki-1.jpg'
-    },
+  getState() {
+    return this._state;
+  },
 
-    {
-      name: 'Dima',
-      avatarLink: 'https://amiel.club/uploads/posts/2022-03/1647576511_1-amiel-club-p-bebi-yoda-kartinki-1.jpg'
-    },
+  _callSubscriber() {
+  },
 
-    {
-      name: 'Ilya',
-      avatarLink: 'https://amiel.club/uploads/posts/2022-03/1647576511_1-amiel-club-p-bebi-yoda-kartinki-1.jpg'
-    },
-  ]
+  subscribe(observer) {
+    this._callSubscriber = observer;
+  },
+
+  dispatch(action) {
+
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.messagePage = messagesReducer(this._state.messagePage, action);
+    this._state.friends = friendsReducer(this._state.friends, action);
+
+    this._callSubscriber(this._state);
+  },
 }
 
-export let addPost = () => {
-  let newPost = {
-    message: state.profilePage.newTextPost,
-    likes: 12,
-  }
-  state.profilePage.postArrayData.push(newPost);
-  rerenderTree(state);
-  changeTextPost('');
-}
-
-export let changeTextPost = (text) => {
-  state.profilePage.newTextPost = text;
-  rerenderTree(state);
-  debugger
-}
-
-export default state;
+export default store;
 
 
 

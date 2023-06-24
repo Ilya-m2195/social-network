@@ -20,9 +20,9 @@ const App = props => {
           <div className='content'>
             <Routes>
               <Route path='/profile' element={<Profile state={props.state.profilePage}
-               addPost={props.addPost}
-               changeTextPost={props.changeTextPost}/>} />
-              <Route path='/messages/*' element={<Messages users={props.state.messagePage} dialogs={props.state.messagePage}/>} />
+               dispatch={props.dispatch}/>} />
+              <Route path='/messages/*' element={<Messages state={props.state.messagePage}
+              dispatch={props.dispatch}/>} />
               <Route path='/news' Component={News} />
               <Route path='/music' Component={Music} />
               <Route path='/setting' Component={Setting} />
