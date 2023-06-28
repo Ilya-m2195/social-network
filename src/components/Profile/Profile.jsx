@@ -1,13 +1,11 @@
 import Style from './Profile.module.css'
-import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './profileInfo/profileInfo';
+import NewPostContainer from './NewPostContainer';
 const Profile = (props) => {
   return (
     <div>
       <ProfileInfo />
-      <MyPosts newTextPost={props.state.newTextPost}
-        posts={props.state.postArrayData}
-        dispatch={props.dispatch}/>
+      <NewPostContainer />
     </div>
   )
 }

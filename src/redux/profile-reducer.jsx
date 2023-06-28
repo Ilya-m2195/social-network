@@ -1,20 +1,44 @@
 const ADD_POST = 'ADD-POST';
 const CHANGE_TEXT_POST = 'CHANGE-TEXT-POST';
 
-const profileReducer = (state, action) => {
+let initialState = {
+
+  postArrayData: [
+    {
+      message: 'hi',
+      likes: 13,
+    },
+    {
+      message: 'This is my second post!',
+      likes: 14,
+    },
+  ],
+
+  newTextPost: ''
+
+}
+
+const profileReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case ADD_POST:
+    case ADD_POST: {
       let newPost = {
         message: state.newTextPost,
         likes: 0,
       }
-    state.postArrayData.push(newPost);
-    state.newTextPost = '';
-      return state;
-    case CHANGE_TEXT_POST:
-    state.newTextPost = action.textPost;
-    return state;
+      let stateCopy = { ...state }
+      stateCopy.postArrayData = [...state.postArrayData];
+      stateCopy.postArrayData.push(newPost);
+      stateCopy.newTextPost = '';
+      return stateCopy;
+    }
+
+    case CHANGE_TEXT_POST: {
+      let stateCopy = { ...state }
+      stateCopy.newTextPost = action.textPost;
+      return stateCopy;
+    }
+
     default: return state;
   }
 }

@@ -8,6 +8,7 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import MessagesContainer from './components/Messages/MessagesContainer';
 
 const App = props => {
   return (
@@ -15,14 +16,12 @@ const App = props => {
       <div className='container'>
         <div className='app-wrapper'>
           <Header />
-          <Navigation state={props.state.friends}/>
+          <Navigation/>
 
           <div className='content'>
             <Routes>
-              <Route path='/profile' element={<Profile state={props.state.profilePage}
-               dispatch={props.dispatch}/>} />
-              <Route path='/messages/*' element={<Messages state={props.state.messagePage}
-              dispatch={props.dispatch}/>} />
+              <Route path='/profile' element={<Profile/>} />
+              <Route path='/messages/*' element={<MessagesContainer/>} />
               <Route path='/news' Component={News} />
               <Route path='/music' Component={Music} />
               <Route path='/setting' Component={Setting} />

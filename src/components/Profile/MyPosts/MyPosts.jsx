@@ -1,16 +1,26 @@
 import Style from './MyPosts.module.css'
-import NewPost from './NewPost/NewPost';
 import Post from './Post/Post';
 
 const MyPosts = props => {
 
-  let postsElements = props.posts.map(post => <Post message={post.message} likes={post.likes} />)
+  let postsElements = props.profilePage.map(post => <Post message={post.message} likes={post.likes} />);
+
+  let addPost = () => {
+    props.addPost();
+  }
+
+  let changeTextPost = (event) => {
+    let text = event.target.value;
+    props.changeTextPost(text);
+  }
 
   return (
     <div className={Style.container}>My posts
-      <NewPost dispatch={props.dispatch}
-        newTextPost={props.newTextPost}
-      />
+       <div className={Style.container}>
+      <h3>New post</h3>
+      <textarea onChange={changeTextPost} placeholder='text of new post' value={props.newTextPost}></textarea>
+      <button onClick={addPost} className={Style.btn}>new post</button>
+    </div>
       {postsElements};
     </div>
   )
