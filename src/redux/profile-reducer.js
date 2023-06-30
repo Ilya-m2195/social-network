@@ -7,10 +7,12 @@ let initialState = {
     {
       message: 'hi',
       likes: 13,
+      id: 0,
     },
     {
       message: 'This is my second post!',
       likes: 14,
+      id: 1,
     },
   ],
 
@@ -21,22 +23,24 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case ADD_POST: {
-      let newPost = {
-        message: state.newTextPost,
-        likes: 0,
+    case ADD_POST:
+      let newTextPost = state.newTextPost;
+      return {
+        ...state,
+        newTextPost: '',
+        postArrayData: [...state.postArrayData, {
+          message: newTextPost,
+          likes: 0,
+          id: 2
+        }
+        ]
       }
-      let stateCopy = { ...state }
-      stateCopy.postArrayData = [...state.postArrayData];
-      stateCopy.postArrayData.push(newPost);
-      stateCopy.newTextPost = '';
-      return stateCopy;
-    }
 
     case CHANGE_TEXT_POST: {
-      let stateCopy = { ...state }
-      stateCopy.newTextPost = action.textPost;
-      return stateCopy;
+      return {
+        ...state,
+        newTextPost: action.textPost,
+      }
     }
 
     default: return state;

@@ -1,14 +1,13 @@
 import './App.css';
-import React from 'react'; // работает и без этого ипорта
 import Header from './components/Header/Header';
 import Navigation from './components/Navigation/Navigation';
 import Profile from './components/Profile/Profile';
-import Messages from './components/Messages/Messages';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MessagesContainer from './components/Messages/MessagesContainer';
+import UsersContainer from './Users/UsersContainer';
 
 const App = props => {
   return (
@@ -22,6 +21,7 @@ const App = props => {
             <Routes>
               <Route path='/profile' element={<Profile/>} />
               <Route path='/messages/*' element={<MessagesContainer/>} />
+              <Route path='/users' element={<UsersContainer/>} />
               <Route path='/news' Component={News} />
               <Route path='/music' Component={Music} />
               <Route path='/setting' Component={Setting} />

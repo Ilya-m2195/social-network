@@ -3,7 +3,7 @@ import Post from './Post/Post';
 
 const MyPosts = props => {
 
-  let postsElements = props.profilePage.map(post => <Post message={post.message} likes={post.likes} />);
+  let postsElements = props.profilePage.map(post => <Post message={post.message} likes={post.likes} key={post.id} />);
 
   let addPost = () => {
     props.addPost();

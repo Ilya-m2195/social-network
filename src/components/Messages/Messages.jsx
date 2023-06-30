@@ -14,8 +14,8 @@ const Messages = props => {
     props.changeCurrentTextMessage(messageText);
   }
 
-  let dialogElements = props.messagePage.dialogArrayData.map(dialog => <Dialog message={dialog.message} />);
-  let dialogUsers = props.messagePage.userArrayData.map(user => <User name={user.name} id={user.id} />);
+  let dialogElements = props.messagePage.dialogArrayData.map(dialog => <Dialog message={dialog.message} key={dialog.id}/>);
+  let dialogUsers = props.messagePage.userArrayData.map(user => <User name={user.name} id={user.id} key={user.id}/>);
 
   return (
     < div className={Style.container} >
