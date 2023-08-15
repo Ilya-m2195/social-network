@@ -1,7 +1,8 @@
 import React from 'react';
-import Dialog from './Dialogs/Dialog'
-import Style from './Messages.module.css'
-import User from './Users/User'
+import Dialog from './Dialogs/Dialog';
+import Style from './Messages.module.css';
+import User from './Users/User';
+import { Navigate } from 'react-router-dom'
 
 const Messages = props => {
 
@@ -14,25 +15,31 @@ const Messages = props => {
     props.changeCurrentTextMessage(messageText);
   }
 
-  let dialogElements = props.messagePage.dialogArrayData.map(dialog => <Dialog message={dialog.message} key={dialog.id}/>);
-  let dialogUsers = props.messagePage.userArrayData.map(user => <User name={user.name} id={user.id} key={user.id}/>);
+  let dialogElements = props.messagePage.dialogArrayData.map(dialog => <Dialog message={dialog.message} key={dialog.id} />);
+  let dialogUsers = props.messagePage.userArrayData.map(user => <User name={user.name} id={user.id} key={user.id} />);
 
-  return (
-    < div className={Style.container} >
-      <h2>Messages</h2>
-      <div className={Style.dialogs_box}>
-        <ul className={Style.users}>
-          {dialogUsers}
-        </ul>
-        <div className={Style.messages}>
-          {dialogElements}
+  if (!props.isAuth) {
+    return <Navigate to={"/login"} />
+  } else {
+    return (
+      < div className={Style.container} >
+        <h2>Messages</h2>
+        <div className={Style.dialogs_box}>
+          <ul className={Style.users}>
+            {dialogUsers}
+          </ul>
+          <div className={Style.messages}>
+            {dialogElements}
+          </div>
+
         </div>
+        <textarea onChange={changeCurrentTextMessage} value={props.newTextMessage}></textarea>
+        <button className={Style.btn} onClick={addMessage}>send message</button>
+      </div >
+    )
+  }
 
-      </div>
-      <textarea onChange={changeCurrentTextMessage} value={props.newTextMessage}></textarea>
-      <button className={Style.btn} onClick={addMessage}>send message</button>
-    </div >
-  )
+
 }
 
 export default Messages;

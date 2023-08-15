@@ -1,4 +1,6 @@
-import defaultAvatar from '../assets/img/defaultAvatar.png';
+
+import { NavLink } from 'react-router-dom';
+import defaultAvatar from '../../assets/img/defaultAvatar.png';
 import Style from './Users.module.css'
 
 const Users = props => {
@@ -26,12 +28,22 @@ const Users = props => {
       {
         props.users.map(user => <div key={user.id} className='container'>
           <div>
-            <img className={Style.avatar} src={user.photos.small != null ? user.photos.small : defaultAvatar} alt='avatar' />
+            <NavLink to={'/profile/' + user.id}>
+              <img className={Style.avatar} src={user.photos.small != null ? user.photos.small : defaultAvatar} alt='avatar' />
+            </NavLink>
           </div>
           <div>
             {
-              user.followed ? <button className={Style.btn} onClick={() => props.unFollow(user.id)} >Follow</button> :
-                <button className={Style.btn} onClick={() => props.follow(user.id)}>Unfollow</button>
+              user.followed ? <button disabled={props.followingInProgress.some(id => id === user.id)} className={Style.btn}
+                onClick={() => {
+                  props.unfollowUser(user.id);
+
+                }}
+              >Unfollow</button> :
+                <button disabled={props.followingInProgress.some(id => id === user.id)} className={Style.btn} onClick={() => {
+                  props.followUser(user.id);
+                }
+                }>Follow</button>
 
             }
 

@@ -1,13 +1,35 @@
+import Preloader from '../../../common/Preloader/Preloader';
 import Style from './ProfileInfo.module.css'
 
 const ProfileInfo = props => {
-return(
-  <div>
-     <img className={Style.background} src='https://kartinki.pibig.info/uploads/posts/2023-04/thumbs/1680522312_kartinki-pibig-info-p-ochen-krasivaya-kartinka-spokoinoi-nochi-l-1.jpg' alt='background'></img>
-      <img className={Style.avatar} src='https://img2.joyreactor.cc/pics/post/anon-%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0-2191131.jpeg' alt='avatar'></img>
-      <div>description</div>
-  </div>
-)
+
+  if (!props.profile) {
+    return <Preloader />
+  }
+  return (
+    <div>
+      <div> <p>{props.profile.fullName}</p>
+        {/* <img className={Style.background} src={props.profile.photos.large} alt='background'></img> */}
+        <img className={Style.avatar} src={props.profile.photos.small} alt='avatar'></img>
+        <p>{props.profile.aboutMe ? props.profile.aboutMe : ''}</p>
+      </div>
+      <div>
+        <span>My contacts</span>
+        <ul>
+          <li>facebook - {props.profile.contacts.facebook ? props.profile.contacts.facebook : 'no facebook'}</li>
+          <li>vk - {props.profile.contacts.vk ? props.profile.contacts.vk : 'no vk'}</li>
+          <li>twitter - {props.profile.contacts.twitter ? props.profile.contacts.twitter : 'no twitter'}</li>
+          <li>instagram - {props.profile.contacts.instagram ? props.profile.contacts.instagram : 'no instagram'}</li>
+          <li>youtube - {props.profile.contacts.youtube ? props.profile.contacts.youtube : 'no youtube'}</li>
+          <li>github - {props.profile.contacts.github ? props.profile.contacts.github : 'no github'}</li>
+          <li>mainLink - {props.profile.contacts.mainLink ? props.profile.contacts.mainLink : 'no mainLink'}</li>
+          <li>website - {props.profile.contacts.website ? props.profile.contacts.website : 'no site'}</li>
+        </ul>
+        <p>Ищу работу - {props.profile.lookingForAJob ? 'Да' : 'Нет'}</p>
+      </div>
+    </div>
+  )
+
 }
 
 export default ProfileInfo;
