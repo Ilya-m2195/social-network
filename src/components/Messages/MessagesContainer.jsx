@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { AddMessageActionCreator, changeTextMessageActionCreator } from "../../redux/messages-reducer"
+import { AddMessageActionCreator } from "../../redux/messages-reducer"
 import Messages from "./Messages"
 import { withAuthRedirect } from "../../hoc/withAuthRedirect"
 import { compose } from "redux"
@@ -13,11 +13,8 @@ let mapStateProps = state => {
 
 let dispatchToProps = dispatch => {
   return {
-    changeCurrentTextMessage: textMessage => {
-      dispatch(changeTextMessageActionCreator(textMessage));
-    },
-    addMessage: () => {
-      dispatch(AddMessageActionCreator());
+    addMessage: (newMessageBody) => {
+      dispatch(AddMessageActionCreator(newMessageBody));
     }
   }
 }
