@@ -1,5 +1,6 @@
 import Preloader from '../../../common/Preloader/Preloader';
 import Style from './ProfileInfo.module.css'
+import { ProfileStatus } from './ProfileStatus';
 
 const ProfileInfo = props => {
 
@@ -11,7 +12,10 @@ const ProfileInfo = props => {
       <div> <p>{props.profile.fullName}</p>
         {/* <img className={Style.background} src={props.profile.photos.large} alt='background'></img> */}
         <img className={Style.avatar} src={props.profile.photos.small} alt='avatar'></img>
-        <p>{props.profile.aboutMe ? props.profile.aboutMe : ''}</p>
+        <ProfileStatus 
+        status={props.status}
+        updateStatus={props.updateStatus}/>
+        {/* <p>{props.profile.aboutMe ? props.profile.aboutMe : ''}</p> */}
       </div>
       <div>
         <span>My contacts</span>
