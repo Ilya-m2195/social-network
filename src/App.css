@@ -24,9 +24,9 @@ img {
 }
 
 button {
-  outline: none;
+  /* outline: none;
   border: none;
-  background: none;
+  background: none; */
   cursor: pointer;
   padding: 0;
 }
