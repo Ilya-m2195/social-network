@@ -4,7 +4,7 @@ import { requiredField } from '../../utils/validators'
 import { connect } from 'react-redux'
 import { login } from '../../redux/auth-reducer'
 import { Navigate } from 'react-router-dom'
-
+import styles from './Login.module.css'
 
 const LoginForm = props => {
   return (
@@ -25,6 +25,9 @@ const LoginForm = props => {
           component={Input}
           validate={[requiredField]}
         />
+        {props.error && <div className={styles.formSummaryError}>
+          {props.error}
+        </div>}
       </div>
       <div>
         <Field
@@ -52,7 +55,7 @@ const Login = props => {
   }
 
   if (props.isAuth) {
-    return <Navigate to='/profile'/>
+    return <Navigate to='/profile' />
   }
   return (
     <div>
@@ -62,6 +65,6 @@ const Login = props => {
   )
 }
 
-const mapStateToProps = state => ({isAuth: state.auth.isAuth})
+const mapStateToProps = state => ({ isAuth: state.auth.isAuth })
 
 export default connect(mapStateToProps, { login })(Login);

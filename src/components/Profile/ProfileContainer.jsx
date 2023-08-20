@@ -10,7 +10,7 @@ function ProfileContainer(props) {
 
   let { userId } = useParams();
   if (!userId) {
-    userId = 29588;
+    userId = props.authUserId;
   }
 
   const getUserInfo = async (userId) => {
@@ -35,6 +35,8 @@ function ProfileContainer(props) {
 let mapStateToProps = state => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
+  authUserId: state.auth.id,
+  isAuth: state.auth.isAuth
 });
 
 export default compose(
