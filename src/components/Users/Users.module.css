@@ -16,3 +16,10 @@
   cursor: pointer;
 }
 
+.page {
+  font-weight: bold;
+  color: blue;
+  margin: 0 2px;
+  cursor: pointer;
+}
+

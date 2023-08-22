@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
-function ProfileContainer(props) {
+const ProfileContainer = props => {
 
   let { userId } = useParams();
   if (!userId) {

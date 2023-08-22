@@ -2,7 +2,8 @@ import { useState } from "react"
 
 export const ProfileStatus = props => {
   const [editMode, setEditMode] = useState(false);
-  const [status, setStatus] = useState(props.status)
+  const [status, setStatus] = useState(props.status);
+  
   return (
     <>
       {
