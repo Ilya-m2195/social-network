@@ -6,9 +6,9 @@ import { login } from '../../redux/auth-reducer'
 import { Navigate } from 'react-router-dom'
 import styles from './Login.module.css'
 
-const LoginForm = props => {
+const LoginForm = ({handleSubmit, error}) => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <Field
           placeholder='Email'
@@ -25,8 +25,8 @@ const LoginForm = props => {
           component={Input}
           validate={[requiredField]}
         />
-        {props.error && <div className={styles.formSummaryError}>
-          {props.error}
+        {error && <div className={styles.formSummaryError}>
+          {error}
         </div>}
       </div>
       <div>

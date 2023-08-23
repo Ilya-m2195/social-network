@@ -1,0 +1,13 @@
+.selectPage {
+  font-weight: bold;
+  color: coral;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.page {
+  font-weight: bold;
+  color: blue;
+  margin: 0 2px;
+  cursor: pointer;
+}

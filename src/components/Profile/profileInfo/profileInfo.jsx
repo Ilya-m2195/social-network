@@ -10,12 +10,10 @@ const ProfileInfo = props => {
   return (
     <div>
       <div> <p>{props.profile.fullName}</p>
-        {/* <img className={Style.background} src={props.profile.photos.large} alt='background'></img> */}
         <img className={Style.avatar} src={props.profile.photos.small} alt='avatar'></img>
         <ProfileStatus 
         status={props.status}
         updateStatus={props.updateStatus}/>
-        {/* <p>{props.profile.aboutMe ? props.profile.aboutMe : ''}</p> */}
       </div>
       <div>
         <span>My contacts</span>

@@ -8,18 +8,3 @@
   padding: 10px 20px;
   background: #a3d380;
 }
-
-.selectPage {
-  font-weight: bold;
-  color: coral;
-  margin: 0 5px;
-  cursor: pointer;
-}
-
-.page {
-  font-weight: bold;
-  color: blue;
-  margin: 0 2px;
-  cursor: pointer;
-}
-

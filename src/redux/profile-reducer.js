@@ -54,22 +54,19 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = newTextPost => ({ type: ADD_POST, newTextPost });
 const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile });
 const setUserStatus = status => ({ type: SET_STATUS, status });
-export const getUserProfile = userId => dispatch => {
-  usersApi.getProfile(userId).then(response => {
+export const getUserProfile = userId => async dispatch => {
+  const response = await usersApi.getProfile(userId);
     dispatch(setUserProfile(response.data));
-  })
 }
-export const getUserStatus = userId => dispatch => {
-  profileApi.getStatus(userId).then(response => {
+export const getUserStatus = userId => async dispatch => {
+  const response = await profileApi.getStatus(userId)
     dispatch(setUserStatus(response.data));
-  })
 }
-export const updateStatus = status => dispatch => {
-  profileApi.updateStatus(status).then(response => {
+export const updateStatus = status => async dispatch => {
+  const response = await profileApi.updateStatus(status)
     if (response.data.resultCode === 0) {
       dispatch(setUserStatus(status));
     }
-  })
 }
 
 export default profileReducer;
