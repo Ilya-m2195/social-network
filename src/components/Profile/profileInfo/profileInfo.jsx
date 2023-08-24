@@ -1,6 +1,7 @@
 import Preloader from '../../../common/Preloader/Preloader';
 import Style from './ProfileInfo.module.css'
 import { ProfileStatus } from './ProfileStatus';
+import defaultAvatar from '../../../assets/img/defaultAvatar.png';
 
 const ProfileInfo = props => {
 
@@ -10,7 +11,7 @@ const ProfileInfo = props => {
   return (
     <div>
       <div> <p>{props.profile.fullName}</p>
-        <img className={Style.avatar} src={props.profile.photos.small} alt='avatar'></img>
+        <img className={Style.avatar} src={props.profile.photos.small ? props.profile.photos.small : defaultAvatar} alt='avatar'></img>
         <ProfileStatus 
         status={props.status}
         updateStatus={props.updateStatus}/>

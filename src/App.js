@@ -9,38 +9,39 @@ import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { connect } from 'react-redux';
-import {initializeApp} from './redux/app-reducer'
+import { initializeApp } from './redux/app-reducer'
 import Preloader from './common/Preloader/Preloader';
-
 
 const App = props => {
   useEffect(() => {
     props.initializeApp();
-  }, []);
+  }, [props]);
 
   if (!props.initialized) {
-   return <Preloader />
+    return <Preloader />
   }
-  
+
   return (
     <BrowserRouter>
       <div className='container'>
         <div className='app-wrapper'>
           <HeaderContainer />
-          <Navigation/>
+          <Navigation />
 
           <div className='content'>
-            <Routes>
-              <Route path='/profile/:userId?' element={<ProfileContainer/>} />
-              <Route path='/messages/*' element={<MessagesContainer/>} />
-              <Route path='/users' element={<UsersContainer/>} />
-              <Route path='/login' element={<Login/>} />
-              <Route path='/news' Component={News} />
-              <Route path='/music' Component={Music} />
-              <Route path='/setting' Component={Setting} />
-            </Routes>
+            <Suspense fallback={<Preloader />}>
+              <Routes>
+                <Route path='/profile/:userId?' element={<ProfileContainer />} />
+                <Route path='/messages/*' element={<MessagesContainer />} />
+                <Route path='/users' element={<UsersContainer />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/news' Component={News} />
+                <Route path='/music' Component={Music} />
+                <Route path='/setting' Component={Setting} />
+              </Routes>
+            </Suspense>
           </div>
         </div>
       </div>
@@ -49,7 +50,7 @@ const App = props => {
 }
 
 const mapStateToProps = state => (
-  {initialized: state.app.initialized}
+  { initialized: state.app.initialized }
 )
 
-export default connect(mapStateToProps, {initializeApp})(App);
+export default connect(mapStateToProps, { initializeApp })(App);

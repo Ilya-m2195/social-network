@@ -7,7 +7,7 @@ export const User = ({user, followingInProgress, unfollowUser, followUser,  key}
    <div key={key} className='container'>
     <div>
       <NavLink to={'/profile/' + user.id}>
-        <img className={Style.avatar} src={user.photos.small != null ? user.photos.small : defaultAvatar} alt='avatar' />
+        <img className={Style.avatar} src={user.photos.small ? user.photos.small : defaultAvatar} alt='avatar' />
       </NavLink>
     </div>
     <div>

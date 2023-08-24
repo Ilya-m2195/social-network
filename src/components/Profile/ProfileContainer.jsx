@@ -14,13 +14,13 @@ const ProfileContainer = props => {
   }
 
   const getUserInfo = async (userId) => {
-    await props.getUserProfile(userId)
+    await props.getUserProfile(userId);
     await props.getUserStatus(userId);
   }
 
   useEffect(() => {
     getUserInfo(userId);
-  }, [props, userId]);
+  }, []); 
 
   return (
     <div>
