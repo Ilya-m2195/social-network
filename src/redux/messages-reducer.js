@@ -1,4 +1,4 @@
-const ADD_MESSAGE = 'ADD-MESSAGE';
+const ADD_MESSAGE = 'MESSaGAS/ADD-MESSAGE';
 
 let initialState = {
 

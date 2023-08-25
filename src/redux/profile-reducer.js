@@ -1,8 +1,9 @@
 import { profileApi, usersApi } from "../api/api";
 
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
+const ADD_POST = 'PROFILE/ADD-POST';
+const SET_USER_PROFILE = 'PROFILE/SET_USER_PROFILE';
+const SET_STATUS = 'PROFILE/SET_STATUS';
+const SAVE_PHOTO = 'PROFILE/SAVE_PHOTO';
 
 let initialState = {
 
@@ -47,6 +48,11 @@ const profileReducer = (state = initialState, action) => {
         ...state, status: action.status,
       }
     }
+    case SAVE_PHOTO: {
+      return {
+        ...state, profile: {...state.profile, photos: action.photos},
+      }
+    }
     default: return state;
   }
 }
@@ -54,6 +60,9 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = newTextPost => ({ type: ADD_POST, newTextPost });
 const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile });
 const setUserStatus = status => ({ type: SET_STATUS, status });
+const savePhotoSuccess = photos => ({type: SAVE_PHOTO, photos});
+
+
 export const getUserProfile = userId => async dispatch => {
   const response = await usersApi.getProfile(userId);
     dispatch(setUserProfile(response.data));
@@ -66,6 +75,12 @@ export const updateStatus = status => async dispatch => {
   const response = await profileApi.updateStatus(status)
     if (response.data.resultCode === 0) {
       dispatch(setUserStatus(status));
+    }
+}
+export const savePhoto = file => async dispatch => {
+  const response = await profileApi.savePhoto(file);
+    if (response.data.resultCode === 0) {
+      dispatch(savePhotoSuccess(response.data.data.photos));
     }
 }
 

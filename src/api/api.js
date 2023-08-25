@@ -6,8 +6,7 @@ const instance = axios.create({
   headers: {
     "API-KEY": 'd349c53b-1d33-4f2e-b13f-ff5c17f90d1a'
   }
-
-})
+});
 
 export const usersApi = {
   async getUsers(currentPage = 1, pageSize = 10) {
@@ -34,7 +33,16 @@ export const profileApi = {
   },
   updateStatus(status) {
     return instance.put(`profile/status/`, { status: status });
-  }
+  },
+  savePhoto(photoFile) {
+    const formData = new FormData();
+    formData.append('image', photoFile);
+    return instance.put(`/profile/photo/`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+  },
 }
 
 export const authApi = {

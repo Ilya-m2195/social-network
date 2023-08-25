@@ -1,4 +1,4 @@
-import Style from './News.module.css'
+import Style from './News.module.css';
 const News = () => {
   return (
     <div className={Style.container}>

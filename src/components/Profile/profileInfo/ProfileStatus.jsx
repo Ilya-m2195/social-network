@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 
 export const ProfileStatus = props => {
   const [editMode, setEditMode] = useState(false);
@@ -23,5 +23,5 @@ export const ProfileStatus = props => {
         </div>
       }
     </>
-  )
+  );
 }

@@ -17,7 +17,7 @@ const AddMessageForm = props => {
       />
       <button className={Style.btn} >send message</button>
     </form>
-  )
+  );
 }
 
 const AddMessageFormRedux = reduxForm({ form: 'addMessageForm' })(AddMessageForm);
@@ -44,7 +44,7 @@ const Messages = props => {
       </div>
       <AddMessageFormRedux onSubmit={addNewMessage} />
     </div >
-  )
+  );
 }
 
 export default Messages;
